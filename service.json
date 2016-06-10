@@ -85,5 +85,10 @@
         "Timeout": 60
       }
     }
+  },
+  "Outputs": {
+    "AuthLambdaArn": {
+      "Value": {"Fn::GetAtt": ["Lambda", "Arn"]}
+    }
   }
 }
