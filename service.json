@@ -89,6 +89,18 @@
         "Timeout": 60
       }
     },
+    "LambdaLogMonitoring": {
+      "Type": "AWS::Logs::MetricFilter",
+      "Properties": {
+        "LogGroupName": {"Fn::Join": ["", ["/aws/lambda/", {"Ref": "Lambda"}]]},
+        "FilterPattern": "Unhandled",
+        "MetricTransformations": [{
+          "MetricValue": "1",
+          "MetricName": "UnhandledErrorCount",
+          "MetricNamespace": "auth-service"
+        }]
+      }
+    },
     "LambdaErrorsAlarm": {
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
