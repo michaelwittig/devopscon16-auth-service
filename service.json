@@ -6,6 +6,10 @@
     },
     "CodeS3Key": {
       "Type": "String"
+    },
+    "AlertTopicArn": {
+      "Type": "String",
+      "Default": "arn:aws:sns:us-east-1:878533158213:alert"
     }
   },
   "Resources": {
@@ -83,6 +87,24 @@
         "Role": {"Fn::GetAtt": ["LambdaRole", "Arn"]},
         "Runtime": "nodejs4.3",
         "Timeout": 60
+      }
+    },
+    "LambdaErrorsAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmActions": [{"Ref": "AlertTopicArn"}],
+        "OKActions": [{"Ref": "AlertTopicArn"}],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda",
+        "Statistic": "Sum",
+        "Period": 60,
+        "EvaluationPeriods": 1,
+        "Threshold": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Dimensions": [{
+          "Name": "FunctionName",
+          "Value": {"Ref": "Lambda"}
+        }]
       }
     }
   },
