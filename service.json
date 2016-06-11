@@ -137,6 +137,20 @@
         }]
       }
     },
+    "LambdaLogMonitoringAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmActions": [{"Ref": "AlertTopicArn"}],
+        "OKActions": [{"Ref": "AlertTopicArn"}],
+        "MetricName": "UnhandledErrorCount",
+        "Namespace": "auth-service",
+        "Statistic": "Sum",
+        "Period": 60,
+        "EvaluationPeriods": 1,
+        "Threshold": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold"
+      }
+    },
     "LambdaErrorsAlarm": {
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
