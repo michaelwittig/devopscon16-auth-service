@@ -75,6 +75,42 @@
         "TableName": "auth-token"
       }
     },
+    "TokenTableReadThrottleEventsAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "Namespace": "AWS/DynamoDB",
+        "MetricName": "ReadThrottleEvents",
+        "Dimensions": [{
+          "Name": "TableName",
+          "Value": {"Ref": "TokenTable"}
+        }],
+        "Statistic": "Sum",
+        "Period": "60",
+        "EvaluationPeriods": "1",
+        "Threshold": "1",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "AlarmActions": [{"Ref": "AlertTopicArn"}],
+        "OKActions": [{"Ref": "AlertTopicArn"}]
+      }
+    },
+    "TokenTableWriteThrottleEventsAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "Namespace": "AWS/DynamoDB",
+        "MetricName": "WriteThrottleEvents",
+        "Dimensions": [{
+          "Name": "TableName",
+          "Value": {"Ref": "TokenTable"}
+        }],
+        "Statistic": "Sum",
+        "Period": "60",
+        "EvaluationPeriods": "1",
+        "Threshold": "1",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "AlarmActions": [{"Ref": "AlertTopicArn"}],
+        "OKActions": [{"Ref": "AlertTopicArn"}]
+      }
+    },
     "Lambda": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
