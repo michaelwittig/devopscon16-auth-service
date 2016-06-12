@@ -64,6 +64,7 @@
             "  cfnClient = boto3.client('cloudformation')","\n",
             "  res = cfnClient.describe_stacks(StackName=stackName)","\n",
             "  outputs = res['Stacks'][0]['Outputs']","\n",
+            "  logger.info('outputs:{}'.format(outputs))","\n",
             "  output = [x for x in outputs if x['OutputKey'] == outputKey][0]","\n",
             "  return output['OutputValue']","\n",
             "","\n",
