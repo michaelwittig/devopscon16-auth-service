@@ -88,8 +88,7 @@
         "EvaluationPeriods": "1",
         "Threshold": "1",
         "ComparisonOperator": "GreaterThanOrEqualToThreshold",
-        "AlarmActions": [{"Ref": "AlertTopicArn"}],
-        "OKActions": [{"Ref": "AlertTopicArn"}]
+        "AlarmActions": [{"Ref": "AlertTopicArn"}]
       }
     },
     "TokenTableWriteThrottleEventsAlarm": {
@@ -106,8 +105,7 @@
         "EvaluationPeriods": "1",
         "Threshold": "1",
         "ComparisonOperator": "GreaterThanOrEqualToThreshold",
-        "AlarmActions": [{"Ref": "AlertTopicArn"}],
-        "OKActions": [{"Ref": "AlertTopicArn"}]
+        "AlarmActions": [{"Ref": "AlertTopicArn"}]
       }
     },
     "Lambda": {
@@ -140,7 +138,6 @@
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
         "AlarmActions": [{"Ref": "AlertTopicArn"}],
-        "OKActions": [{"Ref": "AlertTopicArn"}],
         "MetricName": "UnhandledErrorCount",
         "Namespace": "auth-service",
         "Statistic": "Sum",
@@ -154,7 +151,6 @@
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
         "AlarmActions": [{"Ref": "AlertTopicArn"}],
-        "OKActions": [{"Ref": "AlertTopicArn"}],
         "MetricName": "Errors",
         "Namespace": "AWS/Lambda",
         "Statistic": "Sum",
