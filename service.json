@@ -8,8 +8,7 @@
       "Type": "String"
     },
     "AlertTopicArn": {
-      "Type": "String",
-      "Default": "arn:aws:sns:us-east-1:878533158213:alert"
+      "Type": "String"
     }
   },
   "Resources": {
